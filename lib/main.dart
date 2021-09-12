@@ -100,7 +100,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       bodyPart: BodyPart.torso,
                       selected: defendingBodyPart == BodyPart.torso,
                       bodyPartSetter: _selectDefendingBodyPart,
-                    ),SizedBox(
+                    ),
+                    SizedBox(
                       height: 14,
                     ),
                     BodyPartButton(
@@ -133,7 +134,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       bodyPart: BodyPart.torso,
                       selected: attackingBodyPart == BodyPart.torso,
                       bodyPartSetter: _selectAttackingBodyPart,
-                    ),SizedBox(
+                    ),
+                    SizedBox(
                       height: 14,
                     ),
                     BodyPartButton(
