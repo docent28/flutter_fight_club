@@ -174,17 +174,17 @@ class _MyHomePageState extends State<MyHomePage> {
                     height: 40,
                     child: ColoredBox(
                       color:
-                          attackingBodyPart == null || defendingBodyPart == null
-                              ? Colors.black38
-                              : Color.fromRGBO(0, 0, 0, 0.87),
+                      attackingBodyPart == null || defendingBodyPart == null
+                          ? Colors.black38
+                          : Color.fromRGBO(0, 0, 0, 0.87),
                       child: Center(
                           child: Text(
-                        "Go".toUpperCase(),
-                        style: TextStyle(
-                            fontWeight: FontWeight.w900,
-                            fontSize: 16,
-                            color: Colors.white),
-                      )),
+                            "Go".toUpperCase(),
+                            style: TextStyle(
+                                fontWeight: FontWeight.w900,
+                                fontSize: 16,
+                                color: Colors.white),
+                          )),
                     ),
                   ),
                 ),
