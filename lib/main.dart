@@ -100,6 +100,13 @@ class _MyHomePageState extends State<MyHomePage> {
                       bodyPart: BodyPart.torso,
                       selected: defendingBodyPart == BodyPart.torso,
                       bodyPartSetter: _selectDefendingBodyPart,
+                    ),SizedBox(
+                      height: 14,
+                    ),
+                    BodyPartButton(
+                      bodyPart: BodyPart.legs,
+                      selected: defendingBodyPart == BodyPart.legs,
+                      bodyPartSetter: _selectDefendingBodyPart,
                     ),
                   ],
                 ),
@@ -126,6 +133,13 @@ class _MyHomePageState extends State<MyHomePage> {
                       bodyPart: BodyPart.torso,
                       selected: attackingBodyPart == BodyPart.torso,
                       bodyPartSetter: _selectAttackingBodyPart,
+                    ),SizedBox(
+                      height: 14,
+                    ),
+                    BodyPartButton(
+                      bodyPart: BodyPart.legs,
+                      selected: attackingBodyPart == BodyPart.legs,
+                      bodyPartSetter: _selectAttackingBodyPart,
                     ),
                   ],
                 ),
@@ -144,18 +158,32 @@ class _MyHomePageState extends State<MyHomePage> {
                 width: 16,
               ),
               Expanded(
-                child: SizedBox(
-                  height: 40,
-                  child: ColoredBox(
-                    color: Color.fromRGBO(0, 0, 0, 0.87),
-                    child: Center(
-                        child: Text(
-                      "Go".toUpperCase(),
-                      style: TextStyle(
-                          fontWeight: FontWeight.w900,
-                          fontSize: 16,
-                          color: Colors.white),
-                    )),
+                child: GestureDetector(
+                  onTap: () {
+                    if (attackingBodyPart != null &&
+                        defendingBodyPart != null) {
+                      setState(() {
+                        attackingBodyPart = null;
+                        defendingBodyPart = null;
+                      });
+                    }
+                  },
+                  child: SizedBox(
+                    height: 40,
+                    child: ColoredBox(
+                      color:
+                          attackingBodyPart == null || defendingBodyPart == null
+                              ? Colors.black38
+                              : Color.fromRGBO(0, 0, 0, 0.87),
+                      child: Center(
+                          child: Text(
+                        "Go".toUpperCase(),
+                        style: TextStyle(
+                            fontWeight: FontWeight.w900,
+                            fontSize: 16,
+                            color: Colors.white),
+                      )),
+                    ),
                   ),
                 ),
               ),
@@ -192,6 +220,7 @@ class BodyPart {
 
   static const head = BodyPart._("Head");
   static const torso = BodyPart._("Torso");
+  static const legs = BodyPart._("Legs");
 
   @override
   String toString() {
@@ -218,8 +247,9 @@ class BodyPartButton extends StatelessWidget {
       child: SizedBox(
         height: 40,
         child: ColoredBox(
-          color:
-              selected ? const Color.fromRGBO(28, 121, 206, 1) : Colors.black26,
+          color: selected
+              ? const Color.fromRGBO(28, 121, 206, 1)
+              : const Color.fromRGBO(0, 0, 0, 0.38),
           child: Center(
             child: Text(bodyPart.name.toUpperCase()),
           ),
