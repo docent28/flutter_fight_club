@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -27,8 +29,15 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  static const maxLives = 5;
+
   BodyPart? defendingBodyPart;
   BodyPart? attackingBodyPart;
+  BodyPart whatEnemyAttacks = BodyPart.random();
+  BodyPart whatEnemyDefends = BodyPart.random();
+
+  int yourLives = maxLives;
+  int enemysLives = maxLives;
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +48,11 @@ class _MyHomePageState extends State<MyHomePage> {
           SizedBox(
             height: 40,
           ),
-          FightersInfo(),
+          FightersInfo(
+            maxLivesCount: maxLives,
+            yourLivesCount: yourLives,
+            enemysLivesCount: enemysLives,
+          ),
           Expanded(child: SizedBox()),
           ControlsWidget(
             defendingBodyPart: defendingBodyPart,
@@ -51,10 +64,9 @@ class _MyHomePageState extends State<MyHomePage> {
             height: 14,
           ),
           GoButton(
+            text: yourLives == 0 || enemysLives == 0 ? "Start new game" : "Go",
             onTap: _onGoButtonClicked,
-            color: attackingBodyPart == null || defendingBodyPart == null
-                ? Colors.black38
-                : Color.fromRGBO(0, 0, 0, 0.87),
+            color: _getGoButtonColor(),
           ),
           SizedBox(
             height: 40,
@@ -64,9 +76,38 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
+  Color _getGoButtonColor() {
+    if (yourLives == 0 || enemysLives == 0) {
+      return const Color.fromRGBO(0, 0, 0, 0.87);
+    } else if (attackingBodyPart == null || defendingBodyPart == null) {
+      return Colors.black38;
+    } else {
+      return Color.fromRGBO(0, 0, 0, 0.87);
+    }
+  }
+
   void _onGoButtonClicked() {
-    if (attackingBodyPart != null && defendingBodyPart != null) {
+    if (yourLives == 0 || enemysLives == 0) {
       setState(() {
+        yourLives = maxLives;
+        enemysLives = maxLives;
+      });
+
+    } else if (attackingBodyPart != null && defendingBodyPart != null) {
+      setState(() {
+        final bool enemyLoseLife = attackingBodyPart != whatEnemyDefends;
+        final bool youLoseLife = defendingBodyPart != whatEnemyAttacks;
+
+        if (enemyLoseLife) {
+          enemysLives -= 1;
+        }
+        if (youLoseLife) {
+          yourLives -= 1;
+        }
+
+        whatEnemyDefends = BodyPart.random();
+        whatEnemyAttacks = BodyPart.random();
+
         attackingBodyPart = null;
         defendingBodyPart = null;
       });
@@ -74,12 +115,18 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void _selectDefendingBodyPart(final BodyPart value) {
+    if (yourLives == 0 || enemysLives == 0) {
+      return;
+    }
     setState(() {
       defendingBodyPart = value;
     });
   }
 
   void _selectAttackingBodyPart(final BodyPart value) {
+    if (yourLives == 0 || enemysLives == 0) {
+      return;
+    }
     setState(() {
       attackingBodyPart = value;
     });
@@ -87,11 +134,13 @@ class _MyHomePageState extends State<MyHomePage> {
 }
 
 class GoButton extends StatelessWidget {
+  final String text;
   final VoidCallback onTap;
   final Color color;
 
   const GoButton({
     Key? key,
+    required this.text,
     required this.onTap,
     required this.color,
   }) : super(key: key);
@@ -112,7 +161,7 @@ class GoButton extends StatelessWidget {
                 color: color,
                 child: Center(
                     child: Text(
-                  "Go".toUpperCase(),
+                  text.toUpperCase(),
                   style: TextStyle(
                       fontWeight: FontWeight.w900,
                       fontSize: 16,
@@ -131,8 +180,15 @@ class GoButton extends StatelessWidget {
 }
 
 class FightersInfo extends StatelessWidget {
+  final int maxLivesCount;
+  final int yourLivesCount;
+  final int enemysLivesCount;
+
   const FightersInfo({
     Key? key,
+    required this.maxLivesCount,
+    required this.yourLivesCount,
+    required this.enemysLivesCount,
   }) : super(key: key);
 
   @override
@@ -148,8 +204,8 @@ class FightersInfo extends StatelessWidget {
               children: [
                 Text("You"),
                 LivesWidget(
-                  overallLivesCount: 5,
-                  currentLivesCount: 5,
+                  overallLivesCount: maxLivesCount,
+                  currentLivesCount: yourLivesCount,
                 ),
               ],
             ),
@@ -164,8 +220,8 @@ class FightersInfo extends StatelessWidget {
               children: [
                 Text("Enemy"),
                 LivesWidget(
-                  overallLivesCount: 5,
-                  currentLivesCount: 5,
+                  overallLivesCount: maxLivesCount,
+                  currentLivesCount: enemysLivesCount,
                 ),
               ],
             ),
@@ -313,6 +369,12 @@ class BodyPart {
   @override
   String toString() {
     return 'BodyPart{name: $name}';
+  }
+
+  static const List<BodyPart> _values = [head, torso, legs];
+
+  static BodyPart random() {
+    return _values[Random().nextInt(_values.length)];
   }
 }
 
