@@ -88,11 +88,13 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _onGoButtonClicked() {
     if (yourLives == 0 || enemysLives == 0) {
+      yourLives = maxLives;
+      enemysLives = maxLives;
+    } else if (yourLives == 0 || enemysLives == 0) {
       setState(() {
         yourLives = maxLives;
         enemysLives = maxLives;
       });
-
     } else if (attackingBodyPart != null && defendingBodyPart != null) {
       setState(() {
         final bool enemyLoseLife = attackingBodyPart != whatEnemyDefends;
