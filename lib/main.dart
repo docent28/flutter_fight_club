@@ -259,7 +259,7 @@ class FightersInfo extends StatelessWidget {
               ),
               Column(
                 children: [
-                  const SizedBox(height: 16),
+                  const SizedBox(height: 18),
                   Text(
                     "Enemy",
                     style: TextStyle(
