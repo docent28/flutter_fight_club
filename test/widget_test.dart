@@ -77,106 +77,106 @@ void main() {
     });
   });
 
-  // group("l03h03", () {
-  //   testWidgets('Under FightersInfo there are background with two colors',
-  //       (WidgetTester tester) async {
-  //     await tester.pumpWidget(MyApp());
-  //     final List<Row> rowWidgets = tester
-  //         .widgetList<Row>(
-  //             find.descendant(of: find.byType(FightersInfo), matching: find.byType(Row)))
-  //         .toList();
-  //     final Row? rowWithTwoChildren = rowWidgets.firstWhereOrNull((e) => e.children.length == 2);
-  //     expect(rowWithTwoChildren, isNotNull, reason: "Cannot find Row with needed colors");
-  //     expect(rowWithTwoChildren!.crossAxisAlignment, CrossAxisAlignment.stretch);
-  //     expect(
-  //       rowWithTwoChildren.children[0],
-  //       isInstanceOf<Expanded>(),
-  //     );
-  //     expect(
-  //       (rowWithTwoChildren.children[0] as Expanded).child,
-  //       isInstanceOf<ColoredBox>(),
-  //     );
-  //     expect(
-  //       ((rowWithTwoChildren.children[0] as Expanded).child as ColoredBox).color,
-  //       Colors.white,
-  //     );
-  //
-  //     expect(
-  //       rowWithTwoChildren.children[1],
-  //       isInstanceOf<Expanded>(),
-  //     );
-  //     expect(
-  //       (rowWithTwoChildren.children[1] as Expanded).child,
-  //       isInstanceOf<ColoredBox>(),
-  //     );
-  //     expect(
-  //       ((rowWithTwoChildren.children[1] as Expanded).child as ColoredBox).color,
-  //       Color(0xFFC5D1EA),
-  //     );
-  //   });
-  // });
+  group("l03h03", () {
+    testWidgets('Under FightersInfo there are background with two colors',
+        (WidgetTester tester) async {
+      await tester.pumpWidget(MyApp());
+      final List<Row> rowWidgets = tester
+          .widgetList<Row>(
+              find.descendant(of: find.byType(FightersInfo), matching: find.byType(Row)))
+          .toList();
+      final Row? rowWithTwoChildren = rowWidgets.firstWhereOrNull((e) => e.children.length == 2);
+      expect(rowWithTwoChildren, isNotNull, reason: "Cannot find Row with needed colors");
+      expect(rowWithTwoChildren!.crossAxisAlignment, CrossAxisAlignment.stretch);
+      expect(
+        rowWithTwoChildren.children[0],
+        isInstanceOf<Expanded>(),
+      );
+      expect(
+        (rowWithTwoChildren.children[0] as Expanded).child,
+        isInstanceOf<ColoredBox>(),
+      );
+      expect(
+        ((rowWithTwoChildren.children[0] as Expanded).child as ColoredBox).color,
+        Colors.white,
+      );
 
-  // group('l03h04', () {
-  //   testWidgets('Centered box is expanded, has proper color and has proper size',
-  //       (WidgetTester tester) async {
-  //     void _testSizedBox(SizedBox sizedBox) {
-  //       expect(sizedBox.width, double.infinity);
-  //     }
-  //
-  //     void _testPadding(Padding padding) {
-  //       expect((padding.padding as EdgeInsets).left, 16);
-  //       expect((padding.padding as EdgeInsets).right, 16);
-  //     }
-  //
-  //     void _testColoredBox(ColoredBox coloredBox) {
-  //       expect(coloredBox.color, const Color(0xFFC5D1EA));
-  //     }
-  //
-  //     await tester.pumpWidget(MyApp());
-  //     final SafeArea safeArea = tester.widget<SafeArea>(find.byType(SafeArea));
-  //     expect(safeArea.child, isInstanceOf<Column>());
-  //
-  //     final Column topLevelColumn = safeArea.child as Column;
-  //     final Widget? possiblyExpanded =
-  //         topLevelColumn.children.firstWhereOrNull((element) => element is Expanded);
-  //     expect(possiblyExpanded, isNotNull);
-  //     expect(possiblyExpanded, isInstanceOf<Expanded>());
-  //     final Expanded expanded = possiblyExpanded as Expanded;
-  //
-  //     if (expanded.child is SizedBox) {
-  //       final SizedBox sizedBox = expanded.child as SizedBox;
-  //
-  //       _testSizedBox(sizedBox);
-  //
-  //       expect(sizedBox.child, isInstanceOf<Padding>());
-  //       final Padding padding = sizedBox.child as Padding;
-  //       _testPadding(padding);
-  //
-  //       expect(padding.child, isInstanceOf<ColoredBox>());
-  //       _testColoredBox(padding.child as ColoredBox);
-  //     } else {
-  //       expect(expanded.child, isInstanceOf<Padding>());
-  //       final Padding padding = expanded.child as Padding;
-  //       _testPadding(padding);
-  //
-  //       if (padding.child is SizedBox) {
-  //         final SizedBox sizedBox = padding.child as SizedBox;
-  //         _testSizedBox(sizedBox);
-  //
-  //         expect(sizedBox.child, isInstanceOf<ColoredBox>());
-  //         _testColoredBox(sizedBox.child as ColoredBox);
-  //       } else {
-  //         expect(padding.child, isInstanceOf<ColoredBox>());
-  //         final ColoredBox coloredBox = padding.child as ColoredBox;
-  //         _testColoredBox(coloredBox);
-  //
-  //         expect(coloredBox.child, isInstanceOf<SizedBox>());
-  //
-  //         _testSizedBox(coloredBox.child as SizedBox);
-  //       }
-  //     }
-  //   });
-  // });
+      expect(
+        rowWithTwoChildren.children[1],
+        isInstanceOf<Expanded>(),
+      );
+      expect(
+        (rowWithTwoChildren.children[1] as Expanded).child,
+        isInstanceOf<ColoredBox>(),
+      );
+      expect(
+        ((rowWithTwoChildren.children[1] as Expanded).child as ColoredBox).color,
+        Color(0xFFC5D1EA),
+      );
+    });
+  });
+
+  group('l03h04', () {
+    testWidgets('Centered box is expanded, has proper color and has proper size',
+        (WidgetTester tester) async {
+      void _testSizedBox(SizedBox sizedBox) {
+        expect(sizedBox.width, double.infinity);
+      }
+
+      void _testPadding(Padding padding) {
+        expect((padding.padding as EdgeInsets).left, 16);
+        expect((padding.padding as EdgeInsets).right, 16);
+      }
+
+      void _testColoredBox(ColoredBox coloredBox) {
+        expect(coloredBox.color, const Color(0xFFC5D1EA));
+      }
+
+      await tester.pumpWidget(MyApp());
+      final SafeArea safeArea = tester.widget<SafeArea>(find.byType(SafeArea));
+      expect(safeArea.child, isInstanceOf<Column>());
+
+      final Column topLevelColumn = safeArea.child as Column;
+      final Widget? possiblyExpanded =
+          topLevelColumn.children.firstWhereOrNull((element) => element is Expanded);
+      expect(possiblyExpanded, isNotNull);
+      expect(possiblyExpanded, isInstanceOf<Expanded>());
+      final Expanded expanded = possiblyExpanded as Expanded;
+
+      if (expanded.child is SizedBox) {
+        final SizedBox sizedBox = expanded.child as SizedBox;
+
+        _testSizedBox(sizedBox);
+
+        expect(sizedBox.child, isInstanceOf<Padding>());
+        final Padding padding = sizedBox.child as Padding;
+        _testPadding(padding);
+
+        expect(padding.child, isInstanceOf<ColoredBox>());
+        _testColoredBox(padding.child as ColoredBox);
+      } else {
+        expect(expanded.child, isInstanceOf<Padding>());
+        final Padding padding = expanded.child as Padding;
+        _testPadding(padding);
+
+        if (padding.child is SizedBox) {
+          final SizedBox sizedBox = padding.child as SizedBox;
+          _testSizedBox(sizedBox);
+
+          expect(sizedBox.child, isInstanceOf<ColoredBox>());
+          _testColoredBox(sizedBox.child as ColoredBox);
+        } else {
+          expect(padding.child, isInstanceOf<ColoredBox>());
+          final ColoredBox coloredBox = padding.child as ColoredBox;
+          _testColoredBox(coloredBox);
+
+          expect(coloredBox.child, isInstanceOf<SizedBox>());
+
+          _testSizedBox(coloredBox.child as SizedBox);
+        }
+      }
+    });
+  });
 
   // group('l03h05', () {
   //   testWidgets('Correct avatars added to assets. Util class created. Avatars added to the scren',

@@ -53,7 +53,17 @@ class MyHomePageState extends State<MyHomePage> {
               yourLivesCount: yourLives,
               enemysLivesCount: enemysLives,
             ),
-            Expanded(child: SizedBox()),
+            const SizedBox(height: 30),
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: ColoredBox(
+                  color: FightClubColors.darkPurple,
+                  child: SizedBox(width: double.infinity),
+                ),
+              ),
+            ),
+            const SizedBox(height: 30),
             ControlsWidget(
               defendingBodyPart: defendingBodyPart,
               selectDefendingBodyPart: _selectDefendingBodyPart,
@@ -185,52 +195,63 @@ class FightersInfo extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: 160,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+      child: Stack(
         children: [
-          LivesWidget(
-            overallLivesCount: maxLivesCount,
-            currentLivesCount: yourLivesCount,
-          ),
-          Column(
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              const SizedBox(height: 16),
-              Text(
-                "You",
-                style: TextStyle(
-                  color: FightClubColors.darkGreyText,
-                ),
-              ),
-              const SizedBox(height: 12),
-              ColoredBox(
-                color: Colors.red,
-                child: SizedBox(height: 92, width: 92),
-              )
+              Expanded(child: ColoredBox(color: Colors.white)),
+              Expanded(child: ColoredBox(color: FightClubColors.darkPurple)),
             ],
           ),
-          ColoredBox(
-            color: Colors.green,
-            child: SizedBox(height: 44, width: 44),
-          ),
-          Column(
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              const SizedBox(height: 16),
-              Text(
-                "Enemy",
-                style: TextStyle(
-                  color: FightClubColors.darkGreyText,
-                ),
+              LivesWidget(
+                overallLivesCount: maxLivesCount,
+                currentLivesCount: yourLivesCount,
               ),
-              const SizedBox(height: 12),
+              Column(
+                children: [
+                  const SizedBox(height: 16),
+                  Text(
+                    "You",
+                    style: TextStyle(
+                      color: FightClubColors.darkGreyText,
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+                  ColoredBox(
+                    color: Colors.red,
+                    child: SizedBox(height: 92, width: 92),
+                  )
+                ],
+              ),
               ColoredBox(
-                color: Colors.blue,
-                child: SizedBox(height: 92, width: 92),
-              )
+                color: Colors.green,
+                child: SizedBox(height: 44, width: 44),
+              ),
+              Column(
+                children: [
+                  const SizedBox(height: 16),
+                  Text(
+                    "Enemy",
+                    style: TextStyle(
+                      color: FightClubColors.darkGreyText,
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+                  ColoredBox(
+                    color: Colors.blue,
+                    child: SizedBox(height: 92, width: 92),
+                  )
+                ],
+              ),
+              LivesWidget(
+                overallLivesCount: maxLivesCount,
+                currentLivesCount: yourLivesCount,
+              ),
             ],
-          ),
-          LivesWidget(
-            overallLivesCount: maxLivesCount,
-            currentLivesCount: yourLivesCount,
           ),
         ],
       ),
