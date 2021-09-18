@@ -4,7 +4,7 @@ import 'package:crypto/crypto.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_fight_club/fight_club_colors.dart';
-//import 'package:flutter_fight_club/fight_club_images.dart';
+import 'package:flutter_fight_club/fight_club_images.dart';
 import 'package:flutter_fight_club/main.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -178,59 +178,59 @@ void main() {
     });
   });
 
-  // group('l03h05', () {
-  //   testWidgets('Correct avatars added to assets. Util class created. Avatars added to the scren',
-  //       (WidgetTester tester) async {
-  //     final String youAvatarPath = "assets/images/you-avatar.png";
-  //     final String enemyAvatarPath = "assets/images/enemy-avatar.png";
-  //
-  //     final yourData = await rootBundle.load(youAvatarPath);
-  //     final yourBuffer = yourData.buffer;
-  //     final yourBytes = yourBuffer.asUint8List(yourData.offsetInBytes, yourData.lengthInBytes);
-  //     final yourMd5checksum = md5.convert(yourBytes);
-  //     expect(yourMd5checksum.toString(), "b740ac516bd8fb9950654185ce9241c4");
-  //
-  //     final enemysData = await rootBundle.load(enemyAvatarPath);
-  //     final enemysBuffer = enemysData.buffer;
-  //     final enemysBytes = enemysBuffer.asUint8List(enemysData.offsetInBytes, enemysData.lengthInBytes);
-  //     final enemysMd5checksum = md5.convert(enemysBytes);
-  //     expect(enemysMd5checksum.toString(), "98855f71fa4fd927e3789adebcddaf73");
-  //
-  //     expect(FightClubImages.youAvatar, youAvatarPath);
-  //     expect(FightClubImages.enemyAvatar, enemyAvatarPath);
-  //
-  //     await tester.pumpWidget(MyApp());
-  //     final youImageFinder = find.descendant(
-  //       of: find.descendant(
-  //         of: find.byType(FightersInfo),
-  //         matching: find.ancestor(
-  //           of: find.text("You"),
-  //           matching: find.byType(Column),
-  //         ),
-  //       ),
-  //       matching: find.byType(Image),
-  //     );
-  //     expect(youImageFinder, findsOneWidget);
-  //     final Image youImage = tester.widget(youImageFinder);
-  //     expect(youImage.image, isInstanceOf<AssetImage>());
-  //     expect((youImage.image as AssetImage).assetName, youAvatarPath);
-  //
-  //     final enemyImageFinder = find.descendant(
-  //       of: find.descendant(
-  //         of: find.byType(FightersInfo),
-  //         matching: find.ancestor(
-  //           of: find.text("Enemy"),
-  //           matching: find.byType(Column),
-  //         ),
-  //       ),
-  //       matching: find.byType(Image),
-  //     );
-  //     expect(enemyImageFinder, findsOneWidget);
-  //     final Image enemyImage = tester.widget(enemyImageFinder);
-  //     expect(enemyImage.image, isInstanceOf<AssetImage>());
-  //     expect((enemyImage.image as AssetImage).assetName, enemyAvatarPath);
-  //   });
-  // });
+  group('l03h05', () {
+    testWidgets('Correct avatars added to assets. Util class created. Avatars added to the scren',
+        (WidgetTester tester) async {
+      final String youAvatarPath = "assets/images/you-avatar.png";
+      final String enemyAvatarPath = "assets/images/enemy-avatar.png";
+
+      final yourData = await rootBundle.load(youAvatarPath);
+      final yourBuffer = yourData.buffer;
+      final yourBytes = yourBuffer.asUint8List(yourData.offsetInBytes, yourData.lengthInBytes);
+      final yourMd5checksum = md5.convert(yourBytes);
+      expect(yourMd5checksum.toString(), "b740ac516bd8fb9950654185ce9241c4");
+
+      final enemysData = await rootBundle.load(enemyAvatarPath);
+      final enemysBuffer = enemysData.buffer;
+      final enemysBytes = enemysBuffer.asUint8List(enemysData.offsetInBytes, enemysData.lengthInBytes);
+      final enemysMd5checksum = md5.convert(enemysBytes);
+      expect(enemysMd5checksum.toString(), "98855f71fa4fd927e3789adebcddaf73");
+
+      expect(FightClubImages.youAvatar, youAvatarPath);
+      expect(FightClubImages.enemyAvatar, enemyAvatarPath);
+
+      await tester.pumpWidget(MyApp());
+      final youImageFinder = find.descendant(
+        of: find.descendant(
+          of: find.byType(FightersInfo),
+          matching: find.ancestor(
+            of: find.text("You"),
+            matching: find.byType(Column),
+          ),
+        ),
+        matching: find.byType(Image),
+      );
+      expect(youImageFinder, findsOneWidget);
+      final Image youImage = tester.widget(youImageFinder);
+      expect(youImage.image, isInstanceOf<AssetImage>());
+      expect((youImage.image as AssetImage).assetName, youAvatarPath);
+
+      final enemyImageFinder = find.descendant(
+        of: find.descendant(
+          of: find.byType(FightersInfo),
+          matching: find.ancestor(
+            of: find.text("Enemy"),
+            matching: find.byType(Column),
+          ),
+        ),
+        matching: find.byType(Image),
+      );
+      expect(enemyImageFinder, findsOneWidget);
+      final Image enemyImage = tester.widget(enemyImageFinder);
+      expect(enemyImage.image, isInstanceOf<AssetImage>());
+      expect((enemyImage.image as AssetImage).assetName, enemyAvatarPath);
+    });
+  });
 }
 
 Matcher isOneOrAnother(dynamic one, dynamic another) => OneOrAnotherMatcher(one, another);
