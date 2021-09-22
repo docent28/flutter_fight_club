@@ -253,9 +253,24 @@ class FightersInfo extends StatelessWidget {
                   Image.asset(FightClubImages.youAvatar, height: 92, width: 92),
                 ],
               ),
-              ColoredBox(
-                color: Colors.green,
-                child: SizedBox(height: 44, width: 44),
+              SizedBox(
+                height: 44,
+                width: 44,
+                child: DecoratedBox(
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: FightClubColors.blueButton,
+                  ),
+                  child: Center(
+                    child: Text(
+                      "vs",
+                      style: TextStyle(
+                        color: FightClubColors.whiteText,
+                        fontSize: 16,
+                      ),
+                    ),
+                  ),
+                ),
               ),
               Column(
                 children: [
