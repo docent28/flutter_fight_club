@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_fight_club/fight_club_colors.dart';
 import 'package:flutter_fight_club/fight_club_icons.dart';
 import 'package:flutter_fight_club/fight_club_images.dart';
+import 'package:flutter_fight_club/go_button.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 void main() {
@@ -166,40 +167,6 @@ class MyHomePageState extends State<MyHomePage> {
     setState(() {
       attackingBodyPart = value;
     });
-  }
-}
-
-class GoButton extends StatelessWidget {
-  final String text;
-  final VoidCallback onTap;
-  final Color color;
-
-  const GoButton({
-    Key? key,
-    required this.text,
-    required this.onTap,
-    required this.color,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        color: color,
-        margin: const EdgeInsets.symmetric(horizontal: 16),
-        height: 40,
-        alignment: Alignment.center,
-        child: Text(
-          text.toUpperCase(),
-          style: TextStyle(
-            fontWeight: FontWeight.w900,
-            fontSize: 16,
-            color: FightClubColors.whiteText,
-          ),
-        ),
-      ),
-    );
   }
 }
 
