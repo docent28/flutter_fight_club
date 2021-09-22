@@ -229,7 +229,19 @@ class FightersInfo extends StatelessWidget {
           Row(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Expanded(child: ColoredBox(color: Colors.white)),
+              Expanded(child: ColoredBox(color: FightClubColors.whiteText)),
+              Expanded(
+                child: DecoratedBox(
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [
+                        FightClubColors.whiteText,
+                        FightClubColors.darkPurple
+                      ],
+                    ),
+                  ),
+                ),
+              ),
               Expanded(child: ColoredBox(color: FightClubColors.darkPurple)),
             ],
           ),
