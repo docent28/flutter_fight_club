@@ -52,25 +52,6 @@ class _MainPageContent extends StatelessWidget {
               text: "Statistics".toUpperCase(),
               onTap: () {},
             ),
-            // Container(
-            //   margin: const EdgeInsets.symmetric(horizontal: 16),
-            //   height: 40,
-            //   decoration: BoxDecoration(
-            //     border: Border.all(
-            //       color: FightClubColors.darkGreyText,
-            //       width: 2,
-            //     ),
-            //   ),
-            //   alignment: Alignment.center,
-            //   child: Text(
-            //     "Statistics".toUpperCase(),
-            //     style: TextStyle(
-            //       fontWeight: FontWeight.w400,
-            //       fontSize: 16,
-            //       color: FightClubColors.darkGreyText,
-            //     ),
-            //   ),
-            // ),
             SizedBox(height: 12),
             ActionButton(
               text: "Start".toUpperCase(),
