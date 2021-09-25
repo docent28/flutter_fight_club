@@ -1,10 +1,12 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_fight_club/fight_result.dart';
 import 'package:flutter_fight_club/resources/fight_club_colors.dart';
 import 'package:flutter_fight_club/resources/fight_club_icons.dart';
 import 'package:flutter_fight_club/resources/fight_club_images.dart';
 import 'package:flutter_fight_club/widgets/action_button.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class FightPage extends StatefulWidget {
   const FightPage({Key? key}) : super(key: key);
@@ -66,8 +68,7 @@ class FightPageState extends State<FightPage> {
             ),
             SizedBox(height: 14),
             ActionButton(
-              text:
-                  yourLives == 0 || enemysLives == 0 ? "Back" : "Go",
+              text: yourLives == 0 || enemysLives == 0 ? "Back" : "Go",
               onTap: _onGoButtonClicked,
               color: _getGoButtonColor(),
             ),
@@ -102,23 +103,16 @@ class FightPageState extends State<FightPage> {
         if (youLoseLife) {
           yourLives -= 1;
         }
-        if (enemysLives == 0 && yourLives == 0) {
-          centerText = "Draw";
-        } else if (yourLives == 0) {
-          centerText = "You lost";
-        } else if (enemysLives == 0) {
-          centerText = "You won";
-        } else {
-          String first = enemyLoseLife
-              ? "You hit enemy's ${attackingBodyPart!.name.toLowerCase()}."
-              : "Your attack was blocked.";
-
-          String second = youLoseLife
-              ? "Enemy hit your ${whatEnemyAttacks.name.toLowerCase()}."
-              : "Enemy's attack was blocked.";
-
-          centerText = "$first\n$second";
+        final FightResult? fightResult =
+            FightResult.calculateResult(yourLives, enemysLives);
+        if (fightResult != null) {
+          SharedPreferences.getInstance().then((sharedPreferences) {
+            sharedPreferences.setString(
+                "last_fight_result", fightResult.result);
+          });
         }
+
+        centerText = _calculateCenterText(youLoseLife, enemyLoseLife);
 
         whatEnemyDefends = BodyPart.random();
         whatEnemyAttacks = BodyPart.random();
@@ -126,6 +120,27 @@ class FightPageState extends State<FightPage> {
         attackingBodyPart = null;
         defendingBodyPart = null;
       });
+    }
+  }
+
+  String _calculateCenterText(
+      final bool youLoseLife, final bool enemyLoseLife) {
+    if (enemysLives == 0 && yourLives == 0) {
+      return "Draw";
+    } else if (yourLives == 0) {
+      return "You lost";
+    } else if (enemysLives == 0) {
+      return "You won";
+    } else {
+      final String first = enemyLoseLife
+          ? "You hit enemy's ${attackingBodyPart!.name.toLowerCase()}."
+          : "Your attack was blocked.";
+
+      final String second = youLoseLife
+          ? "Enemy hit your ${whatEnemyAttacks.name.toLowerCase()}."
+          : "Enemy's attack was blocked.";
+
+      return "$first\n$second";
     }
   }
 
