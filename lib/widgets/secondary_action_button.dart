@@ -24,7 +24,7 @@ class SecondaryActionButton extends StatelessWidget {
         ),
         alignment: Alignment.center,
         child: Text(
-          "Statistics".toUpperCase(),
+          text.toUpperCase(),
           style: TextStyle(
             fontWeight: FontWeight.w400,
             fontSize: 16,
