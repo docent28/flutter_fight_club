@@ -20,6 +20,9 @@ class _MainStatisticsPage extends StatelessWidget {
         child: Column(
           children: [
             const SizedBox(height: 24),
+            Container(
+
+            ),
             Center(
               child: Text(
                 "Statistics",
