@@ -33,7 +33,7 @@ class StatisticsPage extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.fromLTRB(0, 0, 0, 16),
               child: SecondaryActionButton(
-                text: "Back".toUpperCase(),
+                text: "Back",
                 onTap: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(
