@@ -16,8 +16,7 @@ class StatisticsPage extends StatelessWidget {
         child: Column(
           children: [
             Container(
-              height: 40,
-              margin: const EdgeInsets.fromLTRB(0, 24, 0, 0),
+              margin: const EdgeInsets.fromLTRB(16, 24, 16, 0),
               alignment: Alignment.center,
               child: Text(
                 "Statistics",
@@ -29,16 +28,13 @@ class StatisticsPage extends StatelessWidget {
                 ),
               ),
             ),
-            Expanded(child: SizedBox()),
+            Expanded(child: SizedBox.shrink()),
             Padding(
               padding: const EdgeInsets.fromLTRB(0, 0, 0, 16),
               child: SecondaryActionButton(
                 text: "Back",
                 onTap: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => MainPage(),
-                    ),
+                  Navigator.of(context).pop(
                   );
                 },
               ),

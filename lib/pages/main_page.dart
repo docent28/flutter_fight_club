@@ -1,9 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_fight_club/fight_result.dart';
 import 'package:flutter_fight_club/pages/fight_page.dart';
 import 'package:flutter_fight_club/pages/statistics_page.dart';
 import 'package:flutter_fight_club/resources/fight_club_colors.dart';
 import 'package:flutter_fight_club/widgets/action_button.dart';
+import 'package:flutter_fight_club/widgets/fight_result_widget.dart';
 import 'package:flutter_fight_club/widgets/secondary_action_button.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -45,11 +47,12 @@ class _MainPageContent extends StatelessWidget {
                 if (!snapshot.hasData || snapshot.data == null) {
                   return const SizedBox();
                 }
-                return Center(child: Text(snapshot.data!));
+                final FightResult fightResult = FightResult.getByName(snapshot.data!);
+                return FightResultWidget(fightResult: fightResult);
               },
             ),
             Expanded(child: SizedBox()),
-            SecondaryActionButton(
+                        SecondaryActionButton(
               text: "Statistics".toUpperCase(),
               onTap: () {
                 Navigator.of(context).push(
