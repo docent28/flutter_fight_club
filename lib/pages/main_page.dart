@@ -47,12 +47,24 @@ class _MainPageContent extends StatelessWidget {
                 if (!snapshot.hasData || snapshot.data == null) {
                   return const SizedBox();
                 }
-                final FightResult fightResult = FightResult.getByName(snapshot.data!);
-                return FightResultWidget(fightResult: fightResult);
+                final FightResult fightResult =
+                    FightResult.getByName(snapshot.data!);
+                return Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      "Last fight result",
+                      style: TextStyle(
+                          color: FightClubColors.darkGreyText, fontSize: 14),
+                    ),
+                    const SizedBox(height: 12),
+                    FightResultWidget(fightResult: fightResult),
+                  ],
+                );
               },
             ),
             Expanded(child: SizedBox()),
-                        SecondaryActionButton(
+            SecondaryActionButton(
               text: "Statistics".toUpperCase(),
               onTap: () {
                 Navigator.of(context).push(

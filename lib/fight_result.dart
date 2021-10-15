@@ -1,4 +1,5 @@
 import 'package:flutter/painting.dart';
+import 'package:flutter_fight_club/resources/fight_club_colors.dart';
 
 class FightResult {
   final String result;
@@ -6,9 +7,9 @@ class FightResult {
 
   const FightResult._(this.result, this.color);
 
-  static const won = FightResult._("Won");
-  static const lost = FightResult._("Lost");
-  static const draw = FightResult._("Draw");
+  static const won = FightResult._("Won", FightClubColors.green);
+  static const lost = FightResult._("Lost", FightClubColors.red);
+  static const draw = FightResult._("Draw", FightClubColors.blueButton);
 
   static const values = [won, lost, draw];
 

@@ -57,12 +57,14 @@ class FightResultWidget extends StatelessWidget {
               ),
               Container(
                 height: 44,
+                padding: EdgeInsets.symmetric(horizontal: 12, vertical: 4),
                 decoration: BoxDecoration(
-                  color: FightClubColors.blueButton,
+                  color: fightResult.color,
+                  borderRadius: BorderRadius.circular(22),
                 ),
                 child: Center(
                   child: Text(
-                    "vs",
+                    fightResult.result.toLowerCase(),
                     style: TextStyle(
                       color: FightClubColors.whiteText,
                       fontSize: 16,
