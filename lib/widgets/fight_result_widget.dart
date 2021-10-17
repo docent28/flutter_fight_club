@@ -66,7 +66,7 @@ class FightResultWidget extends StatelessWidget {
                   child: Text(
                     fightResult.result.toLowerCase(),
                     style: TextStyle(
-                      color: FightClubColors.whiteText,
+                      color: Colors.white,
                       fontSize: 16,
                     ),
                   ),
